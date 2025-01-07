@@ -17,6 +17,9 @@ export class BookingService {
   getBookingDetails(id: any) {
     return this.http.get(`${API_URL}/${id}`);
   }
+  getAdminBookingDetails(id: any) {
+    return this.http.get(`${API_URL}/admin/${id}`);
+  }
   makePayment(id: any, payload: any) {
     return this.http.patch(`${API_URL}/${id}`, payload);
   }

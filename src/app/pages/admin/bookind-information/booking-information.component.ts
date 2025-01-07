@@ -27,10 +27,12 @@ export class BookingInformationComponent {
   }
   getBooking() {
     this.isLoading = true;
-    this.bookingService.getBookingDetails(this.bookingId).subscribe((res) => {
-      this.booking = res;
-      this.isLoading = false;
-    });
+    this.bookingService
+      .getAdminBookingDetails(this.bookingId)
+      .subscribe((res) => {
+        this.booking = res;
+        this.isLoading = false;
+      });
   }
   onConfirm() {
     this.bookingService.confirmBooking(this.bookingId).subscribe(
