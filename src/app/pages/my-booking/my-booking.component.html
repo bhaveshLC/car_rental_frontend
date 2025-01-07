@@ -36,6 +36,8 @@
     </div>
     @if(isLoading){
     <app-loader />
+    }@else{ @if(bookingArr.length==0){
+    <h4 class="text-center text-muted mt-4">No record found</h4>
     }@else{ @for (booking of bookingArr; track $index) {
     <div class="card mb-3">
       <div class="row g-0">
@@ -102,6 +104,6 @@
         </div>
       </div>
     </div>
-    } }
+    } } }
   </div>
 </div>
