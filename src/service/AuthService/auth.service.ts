@@ -29,4 +29,7 @@ export class AuthService {
   createUser(payload: any) {
     return this.http.post(`${API_URL}/`, payload);
   }
+  createAdmin(payload: any) {
+    return this.http.post(`${API_URL}/admin`, payload);
+  }
 }

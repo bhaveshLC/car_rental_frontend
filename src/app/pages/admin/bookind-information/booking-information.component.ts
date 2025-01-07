@@ -1,14 +1,15 @@
 import { AlertService } from './../../../../service/alert/alert.service';
 import { Component, inject } from '@angular/core';
 import { CancelComponent } from '../../../resuable/Cancel/cancel/cancel.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { BookingService } from '../../../../service/Booking/booking.service';
 import { CommonModule } from '@angular/common';
+import { LoaderComponent } from '../../../resuable/loader/loader.component';
 
 @Component({
   selector: 'app-booking-information',
   standalone: true,
-  imports: [CommonModule, CancelComponent],
+  imports: [CommonModule, CancelComponent, LoaderComponent, RouterLink],
   templateUrl: './booking-information.component.html',
   styleUrl: './booking-information.component.css',
 })
@@ -19,14 +20,16 @@ export class BookingInformationComponent {
   alertService = inject(AlertService);
   booking: any;
   bookingId: string = '';
+  isLoading: boolean = false;
   ngOnInit(): void {
     this.bookingId = this.route.snapshot.params['id'];
     this.getBooking();
   }
   getBooking() {
+    this.isLoading = true;
     this.bookingService.getBookingDetails(this.bookingId).subscribe((res) => {
       this.booking = res;
-      console.log(res);
+      this.isLoading = false;
     });
   }
   onConfirm() {

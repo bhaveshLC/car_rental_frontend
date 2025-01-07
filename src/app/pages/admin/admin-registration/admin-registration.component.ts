@@ -34,10 +34,10 @@ export class AdminRegistrationComponent {
       password: this.registerForm.controls.password.value,
       phoneNumber: this.registerForm.controls.phoneNumber.value,
     };
-    this.authService.createUser(registrationObj).subscribe(
+    this.authService.createAdmin(registrationObj).subscribe(
       (res) => {
         this.alertService.getToast('success', 'User created Successfully.');
-        this.router.navigateByUrl('/login');
+        this.router.navigateByUrl('admin/login');
       },
       (error) => {
         this.alertService.getToast('error', error.error.message);

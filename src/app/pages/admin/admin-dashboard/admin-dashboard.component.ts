@@ -7,7 +7,7 @@ Chart.register(...registerables);
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, DatePipe, LoaderComponent],
+  imports: [CommonModule, CurrencyPipe, LoaderComponent],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css',
 })
@@ -40,17 +40,17 @@ export class AdminDashboardComponent implements OnInit {
       this.config = {
         type: 'bar',
         data: {
-          labels: carNames, // Car names as x-axis labels
+          labels: carNames,
           datasets: [
             {
-              label: 'Total Earnings (INR)', // Label for the dataset
-              data: earnings, // Total earnings for each car
-              backgroundColor: 'blue', // Color of the bars
+              label: 'Total Earnings (INR)',
+              data: earnings,
+              backgroundColor: 'blue',
             },
           ],
         },
         options: {
-          aspectRatio: 4,
+          aspectRatio: this.getAspectRatio(),
           responsive: true,
           scales: {
             x: {
@@ -63,21 +63,16 @@ export class AdminDashboardComponent implements OnInit {
         },
       };
 
-      // Create the chart instance once data is available
       new Chart('MyChart', this.config);
       this.isLoading = false;
     });
   }
-  // calculateCancellationRate(bookings: any[]): void {
-  //   const totalBookings = bookings.length;
-  //   this.cancelledBookings = bookings.filter(
-  //     (booking) => booking.bookingStatus === 'cancelled'
-  //   ).length;
+  getAspectRatio() {
+    const width = window.innerWidth;
 
-  //   if (totalBookings > 0) {
-  //     this.cancellationRate = (this.cancelledBookings / totalBookings) * 100;
-  //   } else {
-  //     this.cancellationRate = 0;
-  //   }
-  // }
+    if (width < 768) {
+      return 2;
+    }
+    return 4;
+  }
 }

@@ -1,4 +1,11 @@
+@if(isLoading){
+<app-loader />
+}@else{
 <div class="container">
+  <span [routerLink]="['/admin/bookings']">
+    <i class="fa-solid fa-arrow-left"></i>
+    Back
+  </span>
   <div class="card mb-3">
     <div class="row gap-1">
       <div class="col-md-3" style="height: 200px">
@@ -198,3 +205,4 @@
   </div>
 </div>
 <app-cancel (getBooking)="getBooking()" />
+}
