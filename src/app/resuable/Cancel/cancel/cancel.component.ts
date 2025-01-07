@@ -20,9 +20,12 @@ export class CancelComponent {
   alertService = inject(AlertService);
   bookingId: string = '';
   @Output() getBooking: EventEmitter<void> = new EventEmitter<void>();
+  httpUrl: string = '';
   ngOnInit(): void {
     this.bookingId = this.route.snapshot.params['id'];
-    console.log(this.router.url);
+    if (this.router.url) {
+      this.httpUrl = 'admin';
+    }
   }
   // onCancel() {
   //   console.log(this.bookingId, this.reason);
@@ -49,20 +52,33 @@ export class CancelComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire('Cancelled!', 'Booking has been cancel.', 'success');
-        this.bookingService
-          .cancelBooking(this.bookingId, 'Admin cancelled your booking')
-          .subscribe(
-            (res) => {
-              // this.alertService.getToast(
-              //   'success',
-              //   'Booking cancelled Successfully'
-              // );
-              this.getBooking.emit();
-            },
-            (error) => {
-              this.alertService.getToast('error', error.error.message);
-            }
-          );
+        if (this.httpUrl == 'admin') {
+          this.bookingService
+            .adminCancelBooking(this.bookingId, this.reason)
+            .subscribe(
+              (res) => {
+                this.getBooking.emit();
+              },
+              (error) => {
+                this.alertService.getToast('error', error.error.message);
+              }
+            );
+        } else {
+          this.bookingService
+            .cancelBooking(this.bookingId, this.reason)
+            .subscribe(
+              (res) => {
+                // this.alertService.getToast(
+                //   'success',
+                //   'Booking cancelled Successfully'
+                // );
+                this.getBooking.emit();
+              },
+              (error) => {
+                this.alertService.getToast('error', error.error.message);
+              }
+            );
+        }
       } else {
         Swal.fire('Cancelled', '', 'error');
       }
