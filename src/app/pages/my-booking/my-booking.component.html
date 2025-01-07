@@ -1,0 +1,107 @@
+<div class="container">
+  <div>
+    <div class="card-header mb-2">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [ngClass]="{ active: bookingStatus === 'pending' }"
+            (click)="updateBookingStatus('pending')"
+            >Upcoming @if(bookingStatus === 'pending'){ ({{
+              bookingArr.length
+            }}) }</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [ngClass]="{ active: bookingStatus === 'completed' }"
+            (click)="updateBookingStatus('completed')"
+            >Completed @if(bookingStatus === 'completed'){ ({{
+              bookingArr.length
+            }}) }
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [ngClass]="{ active: bookingStatus === 'cancelled' }"
+            (click)="updateBookingStatus('cancelled')"
+            >Cancelled @if(bookingStatus === 'cancelled'){ ({{
+              bookingArr.length
+            }}) }</a
+          >
+        </li>
+      </ul>
+    </div>
+    @if(isLoading){
+    <app-loader />
+    }@else{ @for (booking of bookingArr; track $index) {
+    <div class="card mb-3">
+      <div class="row g-0">
+        <div class="col-md-3" style="height: 200px">
+          <img
+            [src]="booking.car.carImage"
+            class="img-fluid rounded booking-img"
+            alt="..."
+          />
+        </div>
+        <div class="col-md-7">
+          <div class="card-body">
+            <h4 class="card-title fw-bold">
+              {{ booking.startDate | date }} - {{ booking.endDate | date }}
+            </h4>
+            <div class="row">
+              <h6 class="col-md-6">
+                {{ booking.car.companyName }} {{ booking.car.model }} ({{
+                  booking.car.color
+                }})
+              </h6>
+            </div>
+            <div class="row">
+              <p class="col-md-6">
+                Total :
+                <span class="text-muted">{{ booking.totalPrice }}</span>
+              </p>
+              <p class="col-md-6">
+                Payment :
+                <span
+                  class="fw-bold text-capitalize"
+                  [ngClass]="{
+                    'text-warning': booking.paymentStatus === 'pending',
+                    'text-success': booking.paymentStatus === 'paid'
+                  }"
+                  >{{ booking.paymentStatus }}</span
+                >
+              </p>
+            </div>
+            <div class="row">
+              <p class="col-md-6">
+                Location :
+                <span class="text-muted">{{ booking.car.carLocation }}</span>
+              </p>
+              <p class="col-md-6">
+                City :
+                <span class="text-muted">{{ booking.car.city }}</span>
+              </p>
+            </div>
+            <p class="card-text">
+              <small class="text-body-secondary"
+                >Last updated {{ booking.updatedAt | timeAgo }} mins ago</small
+              >
+            </p>
+          </div>
+        </div>
+        <div class="col-md-2 align-self-center">
+          <button
+            class="btn btn-outline-dark px-3 m-lg-0 ms-3 mb-2"
+            (click)="onViewBooking(booking._id)"
+          >
+            view
+          </button>
+        </div>
+      </div>
+    </div>
+    } }
+  </div>
+</div>

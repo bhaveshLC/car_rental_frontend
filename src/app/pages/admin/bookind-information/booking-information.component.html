@@ -1,0 +1,200 @@
+<div class="container">
+  <div class="card mb-3">
+    <div class="row gap-1">
+      <div class="col-md-3" style="height: 200px">
+        <img
+          [src]="booking?.car.carImage"
+          class="img-fluid rounded booking-img p-2"
+          alt="Car Image"
+        />
+      </div>
+
+      <div class="col-md-8">
+        <div class="card-body">
+          <div class="row">
+            <h4 class="col-md-6 fw-bold">
+              {{ booking?.startDate | date }} -
+              {{ booking?.endDate | date }}
+            </h4>
+            <div class="col-md-6">
+              <p>
+                Booking Status
+                <span
+                  class="text-white fw-bold px-2 py-1 rounded-pill"
+                  [ngClass]="{
+                    'bg-warning': booking?.bookingStatus === 'pending',
+                    'bg-success': booking?.bookingStatus === 'completed',
+                    'bg-primary': booking?.bookingStatus === 'confirmed',
+                    'bg-danger': booking?.bookingStatus === 'cancelled'
+                  }"
+                >
+                  {{ booking?.bookingStatus }}</span
+                >
+              </p>
+            </div>
+          </div>
+          <div
+            class="progress mb-2"
+            role="progressbar"
+            aria-label="Default striped example"
+            aria-valuenow="10"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            <div
+              class="progress-bar progress-bar-striped fw-bold"
+              style="width: 100%"
+              [ngClass]="{
+                'bg-danger w-100': booking?.bookingStatus == 'cancelled',
+                'bg-success w-100': booking?.bookingStatus == 'completed',
+                'bg-primary': booking?.bookingStatus === 'confirmed',
+                'bg-warning w-50': booking?.bookingStatus == 'pending'
+              }"
+            >
+              {{ booking?.bookingStatus }}
+            </div>
+          </div>
+          <div class="row">
+            <h6 class="col-md-6">
+              {{ booking?.car.companyName }} {{ booking?.car.model }} ({{
+                booking?.car.color
+              }})
+            </h6>
+          </div>
+
+          <div class="row">
+            <p class="col-md-6">
+              Total :
+              <span class="text-muted">{{ booking?.totalPrice }}</span>
+            </p>
+            <p class="col-md-6">
+              Payment :
+              <span
+                class="fw-bold text-capitalize"
+                [ngClass]="{
+                  'text-warning': booking?.paymentStatus === 'pending',
+                  'text-success': booking?.paymentStatus === 'paid'
+                }"
+              >
+                {{ booking?.paymentStatus }}
+              </span>
+            </p>
+          </div>
+
+          <div class="row">
+            <p class="col-md-6">
+              Location :
+              <span class="text-muted">{{ booking?.car.carLocation }}</span>
+            </p>
+            <p class="col-md-6">
+              City :
+              <span class="text-muted text-capitalize">{{
+                booking?.car.city
+              }}</span>
+            </p>
+          </div>
+          <div class="row">
+            <p class="col-md-6">
+              Fuel Type :
+              <span class="text-muted">{{ booking?.car.fuelType }}</span>
+            </p>
+            <p class="col-md-6">
+              Transmission :
+              <span class="text-muted text-capitalize">{{
+                booking?.car.transmission
+              }}</span>
+            </p>
+          </div>
+          <div class="row">
+            <p class="col-md-6">
+              Seats :
+              <span class="text-muted">{{ booking?.car.seats }}</span>
+            </p>
+            <p class="col-md-6">
+              Cancellation Policy :
+              <span class="text-muted">{{
+                booking?.car.cancellation ? "Allowed" : "Not Allowed"
+              }}</span>
+            </p>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              Features :
+              <ul class="text-muted">
+                <li *ngFor="let feature of booking?.car.features">
+                  {{ feature }}
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row">
+            <p class="col-md-6">
+              Owner :
+              <span class="text-muted">{{ booking?.user.name }} </span>
+            </p>
+            <p class="col-md-6">
+              Phone :
+              <span class="text-muted"
+                >{{ booking?.user.phoneNumber.substring(0, 6) }}****</span
+              >
+            </p>
+          </div>
+
+          <div class="row">
+            <p class="col-md-6">
+              Security Deposit :
+              <span class="text-muted">{{ booking?.car.securityDeposit }}</span>
+            </p>
+          </div>
+
+          <div class="row">
+            <p class="col-md-6">
+              Delivery Type :
+              <span class="text-muted text-capitalize">{{
+                booking?.car.DeliveryType
+              }}</span>
+            </p>
+          </div>
+          @if(booking?.cancellationReason){
+          <div class="row">
+            <p class="col-md-6">
+              Cancellation Reason :
+              <span class="text-muted text-capitalize">{{
+                booking?.cancellationReason
+              }}</span>
+            </p>
+          </div>
+          }
+          <div class="row">
+            <p class="col-md-12" *ngIf="booking?.specialRequests">
+              Special Request :
+              <span class="text-muted">{{ booking?.specialRequests }}</span>
+            </p>
+          </div>
+          @if(booking?.bookingStatus=='pending' ||
+          booking?.bookingStatus=='confirmed' ){
+          <div class="d-flex flex-wrap gap-3">
+            <button
+              class="btn btn-outline-success"
+              (click)="onConfirm()"
+              [disabled]="booking?.bookingStatus == 'confirmed'"
+            >
+              Confirm Booking
+            </button>
+            <button
+              class="btn btn-outline-danger"
+              data-bs-toggle="modal"
+              data-bs-target="#cancelBooking"
+            >
+              Cancel
+            </button>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-cancel (getBooking)="getBooking()" />

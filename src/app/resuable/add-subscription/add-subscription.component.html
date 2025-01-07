@@ -1,0 +1,99 @@
+<div
+  class="modal fade"
+  id="subscription"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="subscriptionLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="subscriptionLabel">Subscription</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="cardDetails">
+          <h5 class="text-muted">Card Details</h5>
+          <div class="form-group">
+            <p class="fw-bold">
+              Subscription Type :
+              <span class="text-success text-capitalize">{{
+                subscriptionType
+              }}</span>
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label for="inputName">Card Holder Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              formControlName="name"
+              id="inputName"
+              placeholder="Enter name"
+              required
+            />
+          </div>
+
+          <div class="form-group mt-3">
+            <label for="inputCardNumber">Card Number</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputCardNumber"
+              name="cardNumber"
+              formControlName="cardNumber"
+              placeholder="Enter Card Number"
+              maxlength="16"
+              required
+            />
+          </div>
+
+          <div class="form-group mt-3">
+            <label for="inputExpiryDate">Expiry Date</label>
+            <input
+              type="month"
+              class="form-control"
+              id="inputExpiryDate"
+              name="expiryDate"
+              formControlName="expiryDate"
+            />
+          </div>
+
+          <div class="form-group mt-3">
+            <label for="inputCVV">CVV</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputCVV"
+              placeholder="Enter CVV"
+              name="cvv"
+              formControlName="cvv"
+              pattern="\d{3}"
+              maxlength="3"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-dark mt-4 w-100"
+            (click)="onSubmit()"
+            data-bs-dismiss="modal"
+            [disabled]="cardDetails.invalid"
+          >
+            Pay {{ subscriptionAmount | currency : "INR" }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

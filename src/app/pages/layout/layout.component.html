@@ -1,0 +1,85 @@
+<div class="container">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <div class="d-flex align-items-center mb-3 pb-1">
+        <i class="fa-solid fa-car fa-2x me-3 mt-2" style="color: #ff6219"></i>
+        <span class="h2 fw-bold me-2 mt-4 title">Car Rental</span>
+      </div>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              [routerLink]="'/layout/dashboard'"
+              routerLinkActive="router-link-active"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              [routerLink]="'/layout/my-booking'"
+              routerLinkActive="router-link-active"
+              >My Bookings</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              [routerLink]="'/layout/subscription'"
+              routerLinkActive="router-link-active"
+              >Subscription</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              [routerLink]="'/layout/about-us'"
+              routerLinkActive="router-link-active"
+              >About</a
+            >
+          </li>
+        </ul>
+        <div class="d-flex flex-wrap gap-2">
+          <button
+            class="btn btn-outline-success me-2"
+            [routerLink]="'/admin/login'"
+          >
+            Become Host
+          </button>
+          <button class="btn btn-dark me-2" (click)="onLogout()">
+            Logout <i class="fa-solid fa-right-from-bracket"></i>
+          </button>
+          <button
+            class="btn btn-outline-dark rounded-circle"
+            [routerLink]="'/layout/profile'"
+          >
+            <i class="fa-regular fa-user"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<footer class="bg-body-tertiary text-center text-lg-start">
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05)">
+    © 2025 Copyright:
+    <a class="text-body" href="http://localhost:4200/">CarRental.com</a>
+  </div>
+</footer>

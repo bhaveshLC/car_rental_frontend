@@ -1,0 +1,120 @@
+<section class="vh-100 main">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem">
+          <div class="row">
+            <div class="col-12 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+                <form [formGroup]="registerForm">
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    <i
+                      class="fa-solid fa-car fa-2x me-3"
+                      style="color: #ff6219"
+                    ></i>
+                    <span class="h1 fw-bold mb-0">Car Rental</span>
+                  </div>
+
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
+                    Register as Admin
+                  </h5>
+                  <div class="row">
+                    <div class="form-outline col-md-6 mb-4">
+                      <label class="form-label" for="form2Example17"
+                        >Name</label
+                      >
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        formControlName="name"
+                        class="form-control form-control-lg"
+                      />
+                      <div
+                        *ngIf="registerForm.controls.name.errors?.['required'] && registerForm.controls.name.touched"
+                        class="text-danger"
+                      >
+                        Name is required.
+                      </div>
+                    </div>
+                    <div class="form-outline col-md-6 mb-4">
+                      <label class="form-label" for="form2Example17"
+                        >Email address</label
+                      >
+                      <input
+                        type="email"
+                        id="form2Example17"
+                        name="username"
+                        formControlName="username"
+                        class="form-control form-control-lg"
+                      />
+                      <div
+                        *ngIf="registerForm.controls.username.errors?.['required'] && registerForm.controls.username.touched"
+                        class="text-danger"
+                      >
+                        Username is required.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-outline col-md-6 mb-4">
+                      <label class="form-label" for="form2Example27"
+                        >Password</label
+                      >
+                      <input
+                        type="password"
+                        username="password"
+                        formControlName="password"
+                        id="form2Example27"
+                        class="form-control form-control-lg"
+                      />
+                      <div
+                        *ngIf="registerForm.controls.password.errors?.['required'] && registerForm.controls.password.touched"
+                        class="text-danger"
+                      >
+                        Password is required.
+                      </div>
+                    </div>
+                    <div class="form-outline col-md-6 mb-4">
+                      <label class="form-label" for="form2Example27"
+                        >Mobile Number</label
+                      >
+                      <input
+                        type="text"
+                        username="phoneNumber"
+                        formControlName="phoneNumber"
+                        id="phoneNumber"
+                        class="form-control form-control-lg"
+                      />
+                      <div
+                        *ngIf="registerForm.controls.phoneNumber.errors?.['required'] && registerForm.controls.phoneNumber.touched"
+                        class="text-danger"
+                      >
+                        Mobile Number is required.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pt-1 row mb-4">
+                    <button
+                      class="btn btn-dark btn-lg w-50"
+                      type="button"
+                      [disabled]="registerForm.invalid"
+                      (click)="onRegister()"
+                    >
+                      Register
+                    </button>
+                  </div>
+
+                  <span class="ms-2">
+                    Already have account?
+                    <a class="fw-bold" routerLink="/admin/login">Login </a>
+                  </span>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

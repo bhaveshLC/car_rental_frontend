@@ -1,0 +1,418 @@
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Car</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="CarForm" enctype="multipart/form-data">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="companyName">Company Name</label>
+                  <input
+                    id="companyName"
+                    formControlName="companyName"
+                    type="text"
+                    class="form-control"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    CarForm.controls.companyName.errors &&
+                    CarForm.controls.companyName.touched
+                  "
+                >
+                  <span class="text-danger">Company is required</span>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="model">Model</label>
+                  <input
+                    id="model"
+                    formControlName="model"
+                    type="text"
+                    class="form-control"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    CarForm.controls.model.errors &&
+                    CarForm.controls.model.touched
+                  "
+                >
+                  <span class="text-danger">Model is required</span>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="carNumber">Car Number</label>
+                  <input
+                    id="carNumber"
+                    formControlName="carNumber"
+                    type="text"
+                    class="form-control"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    CarForm.controls.carNumber.errors &&
+                    CarForm.controls.carNumber.touched
+                  "
+                >
+                  <span class="text-danger">Car number is required</span>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="year">Year</label>
+                  <input
+                    id="year"
+                    formControlName="year"
+                    type="number"
+                    class="form-control"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    CarForm.controls.year.errors &&
+                    CarForm.controls.year.touched
+                  "
+                >
+                  <span class="text-danger">Year is required</span>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="pricePerDay">Rate/Day</label>
+                  <input
+                    id="pricePerDay"
+                    formControlName="pricePerDay"
+                    type="number"
+                    class="form-control"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    CarForm.controls.pricePerDay.errors &&
+                    CarForm.controls.pricePerDay.touched
+                  "
+                >
+                  <span class="text-danger">Rate is required</span>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="mileage">Mileage</label>
+                  <input
+                    id="mileage"
+                    formControlName="mileage"
+                    type="number"
+                    class="form-control"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    CarForm.controls.mileage.errors &&
+                    CarForm.controls.mileage.touched
+                  "
+                >
+                  <span class="text-danger">Mileage is required</span>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="color">Color</label>
+                  <input
+                    id="color"
+                    formControlName="color"
+                    type="text"
+                    class="form-control"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    CarForm.controls.color.errors &&
+                    CarForm.controls.color.touched
+                  "
+                >
+                  <span class="text-danger">Color is required</span>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="city">City</label>
+                  <input
+                    id="city"
+                    formControlName="city"
+                    type="text"
+                    class="form-control"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    CarForm.controls.city.errors &&
+                    CarForm.controls.city.touched
+                  "
+                >
+                  <span class="text-danger">City is required</span>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="carLocation">Car Location</label>
+                  <textarea
+                    id="carLocation"
+                    formControlName="carLocation"
+                    type="text"
+                    class="form-control"
+                  ></textarea>
+                </div>
+                <div
+                  *ngIf="
+                    CarForm.controls.carLocation.errors &&
+                    CarForm.controls.carLocation.touched
+                  "
+                >
+                  <span class="text-danger">Car location is required</span>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="carImage">Car Image</label>
+                  <input
+                    id="carImage"
+                    type="file"
+                    class="form-control"
+                    (change)="onFileSelected($event)"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="seats">Seats</label>
+                  <input
+                    id="seats"
+                    formControlName="seats"
+                    type="number"
+                    class="form-control"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    CarForm.controls.seats.errors &&
+                    CarForm.controls.seats.touched
+                  "
+                >
+                  <span class="text-danger">Seats is required</span>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="fuelType">Fuel Type</label>
+                  <select
+                    id="fuelType"
+                    class="form-control"
+                    formControlName="fuelType"
+                  >
+                    <option
+                      value="petrol"
+                      [selected]="car.fuelType == 'petrol'"
+                    >
+                      Petrol
+                    </option>
+                    <option
+                      value="diesel"
+                      [selected]="car.fuelType == 'diesel'"
+                    >
+                      Diesel
+                    </option>
+                  </select>
+                </div>
+                <div
+                  *ngIf="
+                    CarForm.controls.fuelType.errors &&
+                    CarForm.controls.fuelType.touched
+                  "
+                >
+                  <span class="text-danger">Fuel type is required</span>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="transmission">Transmission</label>
+                  <select
+                    id="transmission"
+                    class="form-control"
+                    formControlName="transmission"
+                  >
+                    <option
+                      value="automatic"
+                      [selected]="car.transmission == 'automatic'"
+                    >
+                      Automatic
+                    </option>
+                    <option
+                      value="manual"
+                      [selected]="car.transmission == 'manual'"
+                    >
+                      Manual
+                    </option>
+                  </select>
+                </div>
+                <div
+                  *ngIf="
+                    CarForm.controls.transmission.errors &&
+                    CarForm.controls.transmission.touched
+                  "
+                >
+                  <span class="text-danger">Transmission is required</span>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="securityDeposit">Security Deposit</label>
+                  <input
+                    id="securityDeposit"
+                    formControlName="securityDeposit"
+                    type="number"
+                    class="form-control"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    CarForm.controls.securityDeposit.errors &&
+                    CarForm.controls.securityDeposit.touched
+                  "
+                >
+                  <span class="text-danger">Security Deposit is required</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="DeliveryType">Delivery Type</label>
+                  <select
+                    id="DeliveryType"
+                    class="form-control"
+                    formControlName="DeliveryType"
+                  >
+                    <option
+                      value="self"
+                      [selected]="car.DeliveryType == 'self'"
+                    >
+                      Self
+                    </option>
+                    <option
+                      value="delivered"
+                      [selected]="car.DeliveryType == 'delivered'"
+                    >
+                      Delivered
+                    </option>
+                  </select>
+                </div>
+                <div
+                  *ngIf="
+                    CarForm.controls.DeliveryType.errors &&
+                    CarForm.controls.DeliveryType.touched
+                  "
+                >
+                  <span class="text-danger">Delivery type is required</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="availabilityStatus">Availability Status</label>
+                  <input
+                    id="availabilityStatus"
+                    formControlName="availabilityStatus"
+                    type="checkbox"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="cancellation">Cancellation</label>
+                  <input
+                    id="cancellation"
+                    formControlName="cancellation"
+                    type="checkbox"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="col-md-6">
+          <div class="add-feature">
+            <input
+              [(ngModel)]="newFeature"
+              name="newFeature"
+              placeholder="Add new feature"
+            />
+            <button
+              (click)="addFeature()"
+              [disabled]="!newFeature.trim()"
+              class="btn btn-dark"
+            >
+              Add
+            </button>
+          </div>
+          <div
+            *ngFor="let feature of features; let i = index"
+            class="feature-item"
+          >
+            <span>{{ feature }}</span>
+            <button (click)="removeFeature(i)" class="remove-btn">x</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-dark"
+          [disabled]="CarForm.invalid"
+          (click)="onSubmit()"
+          data-bs-dismiss="modal"
+        >
+          Add Car
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

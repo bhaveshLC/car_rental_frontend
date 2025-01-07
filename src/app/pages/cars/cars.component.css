@@ -1,0 +1,25 @@
+.card-img-top {
+    height: 200px;
+    width: 285px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.card {
+    width: 18rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 16rem;
+    }
+
+    .card-img-top {
+        width: 100%;
+    }
+}

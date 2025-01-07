@@ -1,0 +1,58 @@
+@if(isLoading){
+<app-loader />
+}@else{
+<div class="container">
+  @if(transactions.length==0){
+  <div class="text-center text-muted mt-4">
+    <h4>No Transaction found</h4>
+  </div>
+  } @else{
+  <div style="overflow-x: auto">
+    <table class="table table-bordered w-100">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Date</th>
+          <th scope="col">Invoice ID</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(transaction of transactions; track $index){
+        <tr>
+          <td>
+            <div>
+              <img
+                src="http://graph.facebook.com/v2.5/10/picture?width=50&height=50"
+                alt=""
+                class="rounded me-2"
+              />
+              <span style="color: #374559" class="fw-bold">{{
+                transaction?.booking?.user.name
+              }}</span>
+            </div>
+          </td>
+          <td>
+            <div>
+              <span class="d-block fw-bold" style="color: #374559">{{
+                transaction.createdAt | date
+              }}</span>
+              <span class="d-block text-muted">{{
+                transaction.createdAt | timeConverter
+              }}</span>
+            </div>
+          </td>
+          <td class="text-muted">#{{ transaction._id }}</td>
+          <td>{{ transaction.totalAmount | currency : "INR" }}</td>
+          <td>
+            <button class="btn btn-outline-dark" disabled>Details</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }
+</div>
+}

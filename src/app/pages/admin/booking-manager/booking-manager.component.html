@@ -1,0 +1,67 @@
+@if(isLoading){
+<app-loader />
+}@else{
+<div class="container">
+  @if (bookings.length==0) {
+  <div class="text-center text-mutted mt-4">
+    <h4>No record found</h4>
+  </div>
+  }@else{
+  <div style="overflow-x: auto">
+    <table class="table table-bordered w-100">
+      <thead>
+        <th>Car</th>
+        <th>start Date</th>
+        <th>End Date</th>
+        <th>Payment</th>
+        <th>Status</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        @for (booking of bookings; track $index) {
+        <tr>
+          <td>
+            {{ booking.car.companyName }} {{ booking.car.model }} ({{
+              booking.car.color
+            }})
+          </td>
+          <td>{{ booking.startDate | date }}</td>
+          <td>{{ booking.endDate | date }}</td>
+          <td>
+            <span
+              class="text-white fw-bold px-2 py-1 rounded-pill"
+              [ngClass]="{
+              'bg-warning': booking?.paymentStatus === 'pending',
+              'bg-success': booking?.paymentStatus === 'paid',
+              'bg-primary': booking?.paymentStatus === 'refunded',
+            }"
+            >
+              {{ booking?.paymentStatus }}</span
+            >
+          </td>
+          <td>
+            <span
+              class="text-white fw-bold px-2 py-1 rounded-pill"
+              [ngClass]="{
+                'bg-warning': booking?.bookingStatus === 'pending',
+                'bg-success': booking?.bookingStatus === 'completed',
+                'bg-primary': booking?.bookingStatus === 'confirmed',
+                'bg-danger': booking?.bookingStatus === 'cancelled'
+              }"
+            >
+              {{ booking?.bookingStatus }}</span
+            >
+          </td>
+          <td>
+            <button class="btn btn-outline-dark" (click)="onView(booking._id)">
+              view Detail
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }
+</div>
+}

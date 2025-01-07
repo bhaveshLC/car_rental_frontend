@@ -1,0 +1,21 @@
+<div class="card" style="height: 100%">
+  <img class="card-img-top" src="{{ car.carImage }}" alt="Card image cap" />
+  <div class="card-body">
+    <h5 class="card-title">
+      {{ car.companyName }} {{ car.model }} ({{ car.color }})
+    </h5>
+    <div class="d-flex justify-content-between">
+      <span class="fw-bold text-muted"
+        >{{ car.pricePerDay | currency : "INR" }}/day</span
+      >
+      @if(car.availabilityStatus){
+      <span class="fw-bold text-success">Available</span>
+      } @else {
+      <span class="fw-bold text-danger">Rented</span>
+      }
+    </div>
+    <button class="btn btn-dark" (click)="viewCarDetails(car._id)">
+      View Details
+    </button>
+  </div>
+</div>

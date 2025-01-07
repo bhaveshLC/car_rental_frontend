@@ -1,0 +1,172 @@
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Booking Details</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <form [formGroup]="bookingForm">
+            <div class="form-group">
+              <label for="startDate">Start Date</label>
+              <input
+                formControlName="startDate"
+                id="startDate"
+                class="form-control"
+                type="date"
+                (change)="onDateChange()"
+              />
+              <div
+                *ngIf="
+                  bookingForm.controls.startDate.invalid &&
+                  bookingForm.controls.startDate.touched
+                "
+                class="text-danger"
+              >
+                Start Date is required
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="endDate">End Date</label>
+              <input
+                formControlName="endDate"
+                id="endDate"
+                class="form-control"
+                type="date"
+                (change)="onDateChange()"
+              />
+              <div
+                *ngIf="
+                  bookingForm.controls.endDate.invalid &&
+                  bookingForm.controls.endDate.touched
+                "
+                class="text-danger"
+              >
+                End Date is required
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="totalPrice">Total Price</label>
+              <input
+                formControlName="totalPrice"
+                id="totalPrice"
+                class="form-control"
+                type="number"
+                placeholder="Total Price"
+                readonly
+              />
+              <div
+                *ngIf="
+                  bookingForm.controls.totalPrice.errors &&
+                  bookingForm.controls.totalPrice.touched
+                "
+                class="text-danger"
+              >
+                Total Price must be a positive number
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="license">License</label>
+              <input
+                formControlName="license"
+                id="license"
+                class="form-control text-uppercase"
+                type="text"
+                placeholder="Enter license number"
+                maxlength="16"
+              />
+              <div
+                *ngIf="
+                  bookingForm.controls.license.errors &&
+                  bookingForm.controls.license.touched
+                "
+                class="text-danger"
+              >
+                Enter Valid License Number
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="specialRequests">Special Requests</label>
+              <textarea
+                formControlName="specialRequests"
+                id="specialRequests"
+                class="form-control"
+                placeholder="Special Requests"
+              ></textarea>
+            </div>
+            <div class="form-group mb-2">
+              <label for="coupon">Apply Coupon Code</label>
+              <div class="d-flex">
+                <input
+                  id="couponCode"
+                  formControlName="couponCode"
+                  class="form-control text-uppercase"
+                  type="text"
+                  placeholder="Enter Coupon number"
+                  maxlength="16"
+                />
+                <button class="btn btn-dark" (click)="onCouponCodeApply()">
+                  Apply
+                </button>
+              </div>
+              <div
+                *ngIf="
+                  !isValidCoupon &&
+                  bookingForm.controls.couponCode.touched &&
+                  (bookingForm.controls.couponCode.value?.length || 0) > 0
+                "
+                class="text-danger"
+              >
+                {{ couponMessage }}
+              </div>
+            </div>
+            @if( bookingForm.controls.totalPrice.value !=0 && isValidCoupon){
+            <div class="fw-bold">
+              <p>
+                TotalPrice
+                <span class="fw-normal"
+                  >{{
+                    bookingForm.controls.totalPrice.value | currency : "INR"
+                  }}
+                </span>
+              </p>
+              <p>
+                Discount: <span class="text-danger"> {{ discount }}% </span>
+              </p>
+              <p>
+                Total Amount
+                <span class="fw-normal">{{
+                  totalDiscountAmount | currency : "INR"
+                }}</span>
+              </p>
+            </div>
+            }
+            <button
+              type="submit"
+              class="btn btn-dark"
+              [disabled]="bookingForm.invalid"
+              data-bs-dismiss="modal"
+              (click)="onSubmit()"
+            >
+              Checkout
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

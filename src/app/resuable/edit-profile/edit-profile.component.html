@@ -1,0 +1,60 @@
+@if(user){
+<div
+  class="modal fade"
+  id="editProfile"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="editProfileLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editProfileLabel">
+          Edit User Details
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Full Name</label>
+            <input
+              type="text"
+              class="form-control text-muted"
+              name="name"
+              [(ngModel)]="user.name"
+            />
+          </div>
+          <div class="form-group">
+            <label>Mobile Number</label>
+            <input
+              type="text"
+              class="form-control text-muted"
+              name="phoneNumber"
+              [(ngModel)]="user.phoneNumber"
+              maxlength="10"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-dark"
+          data-bs-dismiss="modal"
+          (click)="onUpdate()"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+}

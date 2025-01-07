@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row mb-4">
+    <form class="col-md-12 d-flex flex-wrap gap-2">
+      <div class="col-md-4 d-flex">
+        <input
+          class="form-control me-2"
+          type="search"
+          [(ngModel)]="searchQuery"
+          placeholder="Search car"
+          name="searchQuery"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success" (click)="onSearch()">
+          Search
+        </button>
+      </div>
+      <div class="col-md-4 d-flex">
+        <input
+          class="form-control me-2"
+          type="search"
+          [(ngModel)]="searchCity"
+          placeholder="Search city"
+          name="searchQuery"
+          aria-label="Search"
+        />
+        <button
+          class="btn btn-outline-success d-flex align-items-center"
+          (click)="onCitySearch()"
+        >
+          City <i class="fa-solid fa-magnifying-glass ms-2"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+  @if(isLoading){
+  <app-loader />
+  }@else{
+  <div class="row gy-4">
+    @if(cars.length==0){
+    <h4 class="text-muted text-center mt-4">No car found</h4>
+    }@else{ @for (car of cars; track $index) {
+    <div class="col-lg-3 col-md-4">
+      <app-cars [car]="car" />
+    </div>
+    } }
+  </div>
+  }
+</div>

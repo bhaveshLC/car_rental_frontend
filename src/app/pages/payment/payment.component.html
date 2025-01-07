@@ -1,0 +1,75 @@
+<div class="container">
+  <span (click)="onBack()">
+    <i class="fa-solid fa-arrow-left"></i>
+    Back</span
+  >
+  <div class="d-flex justify-content-center">
+    <div class="col-md-4 mt-5">
+      <h2 class="text-center">Payment</h2>
+      <form [formGroup]="cardDetails">
+        <h5 class="text-muted">Card Details</h5>
+        <div class="form-group">
+          <label for="inputName">Card Holder Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            formControlName="name"
+            id="inputName"
+            placeholder="Enter name"
+            required
+          />
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="inputCardNumber">Card Number</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputCardNumber"
+            name="cardNumber"
+            formControlName="cardNumber"
+            placeholder="Enter Card Number"
+            maxlength="16"
+            required
+          />
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="inputExpiryDate">Expiry Date</label>
+          <input
+            type="month"
+            class="form-control"
+            id="inputExpiryDate"
+            name="expiryDate"
+            formControlName="expiryDate"
+          />
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="inputCVV">CVV</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputCVV"
+            placeholder="Enter CVV"
+            name="cvv"
+            formControlName="cvv"
+            pattern="\d{3}"
+            maxlength="3"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-dark mt-4 w-100"
+          (click)="onSubmit()"
+          [disabled]="cardDetails.invalid"
+        >
+          Pay {{ booking?.totalPrice | currency : "INR" }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

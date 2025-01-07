@@ -1,0 +1,134 @@
+@if(!car){
+<div
+  style="height: 90vh"
+  class="d-flex justify-content-center align-items-center"
+>
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+} @else{
+<div class="container">
+  <span [routerLink]="['/admin/my-cars']">
+    <i class="fa-solid fa-arrow-left"></i>
+    Back
+  </span>
+  <div class="row gy-4">
+    <div class="col-md-6 text-center">
+      <img class="img-top mt-2" src="{{ car.carImage }}" alt="Car image" />
+    </div>
+    <div class="col-md-6">
+      <h4>{{ car.companyName }} {{ car.model }} ({{ car.color }})</h4>
+      <div style="overflow-x: auto">
+        <table class="table table-bordered w-100">
+          <tbody>
+            <tr>
+              <th>Car Number</th>
+              <td>{{ car.carNumber }}</td>
+            </tr>
+            <tr>
+              <th>Rate</th>
+              <td>{{ car.pricePerDay | currency : "INR" }}/Day</td>
+            </tr>
+            <tr>
+              <th>Number of Seats</th>
+              <td>{{ car.seats }}</td>
+            </tr>
+            <tr>
+              <th>Fuel Type</th>
+              <td>{{ car.fuelType }}</td>
+            </tr>
+            <tr>
+              <th>Mileage</th>
+              <td>{{ car.mileage }} km/L</td>
+            </tr>
+            <tr>
+              <th>Transmission</th>
+              <td>{{ car.transmission }}</td>
+            </tr>
+            <tr>
+              <th>Delivery Type</th>
+              <td>{{ car.DeliveryType }}</td>
+            </tr>
+            <tr>
+              <th>Features</th>
+              <td>
+                <div class="d-flex flex-wrap gap-2">
+                  @for (feature of car.features; track $index) {
+                  <span>
+                    <i
+                      class="fa-solid fa-check"
+                      style="
+                        color: #42f06e;
+                        border: 1px solid #42f06e;
+                        border-radius: 50%;
+                        padding: 2px;
+                      "
+                    ></i>
+                    {{ feature }}
+                  </span>
+                  }
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>Security Deposit</th>
+              <td>{{ car.securityDeposit | currency : "INR" }}</td>
+            </tr>
+            <tr>
+              <th>Status</th>
+              <td>
+                @if(car.availabilityStatus) {
+                <span class="fw-bold text-success">Available</span>
+                } @else {
+                <span class="fw-bold text-danger">Rented</span>
+                }
+              </td>
+            </tr>
+            <tr>
+              <th>Cancellation</th>
+              <td>
+                @if(car.cancellation) {
+                <span class="text-muted">Available</span>
+                } @else {
+                <span class="text-muted">Unavailable</span>
+                }
+              </td>
+            </tr>
+            <tr>
+              <th>City</th>
+              <td>{{ car.city }}</td>
+            </tr>
+            <tr>
+              <th>Location</th>
+              <td>{{ car.carLocation }}</td>
+            </tr>
+            <tr>
+              <th>Owner Name</th>
+              <td>{{ car.owner.name }}</td>
+            </tr>
+            <tr>
+              <th>Owner Phone Number</th>
+              <td>{{ car.owner.phoneNumber.substring(0, 7) }}****</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <button
+          type="button"
+          class="btn btn-dark mb-4 me-2"
+          data-bs-toggle="modal"
+          data-bs-target="#editBookingDetails"
+        >
+          Edit
+        </button>
+        <button class="btn btn-danger mb-4" (click)="onDelete()">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+}
+<app-edit-car-details [car]="car" (getCar)="getCarDetails()" />

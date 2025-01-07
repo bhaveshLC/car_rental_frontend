@@ -1,0 +1,106 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="card shadow-lg" style="width: 100%; border-radius: 10px">
+        @if(user.subscriptionType =='standard'){
+        <div
+          class="position-absolute top-0 end-0 m-2 bg-primary text-white py-1 px-3 rounded"
+          style="font-size: 0.875rem"
+        >
+          Selected
+        </div>
+        }
+        <div class="card-body p-3">
+          <div
+            class="card-title bg-primary text-white p-3 d-flex justify-content-between rounded-top"
+          >
+            <h4 class="mb-0">Standard</h4>
+            <p class="mb-0">Free</p>
+          </div>
+
+          <div class="mt-3">
+            <ul class="list-unstyled">
+              <h6>Benefits</h6>
+              <li><i class="fa-solid fa-gift me-2"></i>Basic offers</li>
+              <li>
+                <i class="fa-solid fa-gift me-2"></i> 5% Discount on your first
+                booking
+              </li>
+              <li>
+                <i class="fa-solid fa-gift me-2"></i>Limited customer support
+              </li>
+            </ul>
+          </div>
+          <button
+            type="button"
+            class="btn w-100 py-2 mt-3"
+            data-bs-toggle="modal"
+            disabled
+            data-bs-target="#subscription"
+            (click)="selectSubscription('standard')"
+          >
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="card shadow-lg" style="width: 100%; border-radius: 10px">
+        @if(user.subscriptionType =='premium'){
+        <div
+          class="position-absolute top-0 end-0 m-2 bg-primary text-white py-1 px-3 rounded"
+          style="font-size: 0.875rem"
+        >
+          Selected
+        </div>
+        }
+        <div class="card-body p-3">
+          <div
+            class="card-premium-title bg-primary text-white p-3 d-flex justify-content-between rounded-top"
+          >
+            <h4 class="mb-0">
+              Premium
+              <sup>
+                <img src="star.png" alt="" width="20px" />
+              </sup>
+            </h4>
+            <p class="mb-0">700/year</p>
+          </div>
+
+          <div class="mt-3">
+            <ul class="list-unstyled">
+              <h6>Benefits</h6>
+              <li>
+                <i class="fa-solid fa-gift me-2"></i>Free additional driver
+              </li>
+              <li>
+                <i class="fa-solid fa-gift me-2"></i>Discount on long-term
+                rentals
+              </li>
+              <li>
+                <i class="fa-solid fa-gift me-2"></i>Free vehicle upgrades
+                (subject to availability)
+              </li>
+            </ul>
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-dark w-100 py-2 mt-3"
+            data-bs-toggle="modal"
+            data-bs-target="#subscription"
+            [disabled]="user.subscriptionType == 'premium'"
+            (click)="selectSubscription('premium')"
+          >
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-add-subscription
+  [subscriptionType]="subscriptionType"
+  [subscriptionAmount]="700"
+  (getUser)="getUser()"
+/>

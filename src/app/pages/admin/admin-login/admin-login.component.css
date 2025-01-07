@@ -1,0 +1,21 @@
+.img-fluid {
+    height: 520px;
+    object-fit: cover;
+}
+
+.main {
+    position: relative;
+    background: url("https://cdn.pixabay.com/photo/2015/06/05/15/02/audi-798530_640.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+
+
+.card {
+    border-radius: 1rem;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

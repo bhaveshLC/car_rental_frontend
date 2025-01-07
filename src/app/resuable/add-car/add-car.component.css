@@ -1,0 +1,35 @@
+.form-control {
+    border: 1px solid gray;
+}
+
+.feature-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #f1f1f1;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: red;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.add-feature {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+input {
+    padding: 8px;
+    width: 200px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}

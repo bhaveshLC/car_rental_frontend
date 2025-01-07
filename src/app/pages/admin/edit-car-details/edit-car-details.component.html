@@ -1,0 +1,157 @@
+<div
+  class="modal fade"
+  id="editBookingDetails"
+  tabindex="-1"
+  aria-labelledby="editBookingDetails"
+  aria-hidden="true"
+>
+  @if(car){
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editBookingDetailsLabel">
+          Edit Booking Details
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <form>
+            <div class="d-flex align-items-center gap-2">
+              <label for="rate">Rate </label>
+              <input
+                id="rate"
+                class="form-control"
+                placeholder="rate"
+                name="rate"
+                [(ngModel)]="car.pricePerDay"
+              />
+            </div>
+            <div class="">
+              <label for="securityDeposit">Security Deposit</label>
+              <input
+                id="securityDeposit"
+                class="form-control"
+                placeholder="enter security deposit price"
+                name="securityDeposit"
+                [(ngModel)]="car.securityDeposit"
+              />
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <label for="city">City</label>
+              <input
+                id="city"
+                class="form-control"
+                placeholder="enter city"
+                name="city"
+                [(ngModel)]="car.city"
+              />
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <label for="location">Location</label>
+              <input
+                id="location"
+                class="form-control"
+                placeholder="enter location"
+                name="location"
+                [(ngModel)]="car.carLocation"
+              />
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <label for="DeliveryType">Delivery Type</label>
+              <select
+                id="DeliveryType"
+                class="form-control"
+                name="deliveryType"
+                [(ngModel)]="car.DeliveryType"
+              >
+                <option value="self" [selected]="car.DeliveryType == 'self'">
+                  Self
+                </option>
+                <option
+                  value="delivered"
+                  [selected]="car.DeliveryType === 'delivered'"
+                >
+                  Delivered
+                </option>
+              </select>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <label for="availabilityStatus">Availability Status</label>
+              <select
+                id="availabilityStatus"
+                class="form-control"
+                name="availabilityStatus"
+                [(ngModel)]="car.availabilityStatus"
+              >
+                <option
+                  value="true"
+                  [selected]="car.availabilityStatus == 'true'"
+                >
+                  Available
+                </option>
+                <option
+                  value="false"
+                  [selected]="car.availabilityStatus == 'false'"
+                >
+                  Unavailable
+                </option>
+              </select>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <label for="cancellationStatus">Cancellation </label>
+              <select
+                id="cancellationStatus"
+                class="form-control"
+                name="cancellationStatus"
+                [(ngModel)]="car.cancellation"
+              >
+                <option value="true" [selected]="car.cancellation == 'true'">
+                  Available
+                </option>
+                <option value="false" [selected]="car.cancellation == 'false'">
+                  Unavailable
+                </option>
+              </select>
+            </div>
+            <p>Features</p>
+            <div class="add-feature">
+              <input
+                [(ngModel)]="newFeature"
+                name="newFeature"
+                placeholder="Add new feature"
+              />
+              <button
+                (click)="addFeature()"
+                [disabled]="!newFeature"
+                class="btn btn-dark"
+              >
+                Add
+              </button>
+            </div>
+            <div
+              *ngFor="let feature of car.features; let i = index"
+              class="feature-item"
+            >
+              <span>{{ feature }}</span>
+              <button (click)="removeFeature(i)" class="remove-btn">x</button>
+            </div>
+            <button
+              class="btn btn-dark"
+              (click)="onSubmit()"
+              data-bs-dismiss="modal"
+            >
+              Update
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>

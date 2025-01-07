@@ -1,0 +1,44 @@
+<div
+  class="modal fade"
+  id="cancelBooking"
+  tabindex="-1"
+  aria-labelledby="cancelBooking"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="cancelBooking">Cancel Booking</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="form-group">
+            <label for="reason">Reason For Cancellation</label>
+            <input
+              id="reason"
+              class="form-control"
+              type="text"
+              [(ngModel)]="reason"
+              placeholder="Enter the reason"
+              required
+            />
+          </div>
+          <button
+            class="btn btn-danger mt-2"
+            (click)="onCancel()"
+            data-bs-dismiss="modal"
+            [disabled]="reason.length == 0"
+          >
+            Cancel Booking
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,130 @@
+<div class="container">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div
+      class="d-flex justify-content-between align-items-center"
+      style="width: 100%"
+    >
+      <div
+        class="d-flex align-items-center mb-3 pb-1"
+        routerLink="/admin/dashboard"
+      >
+        <i class="fa-solid fa-car fa-2x me-3 mt-2" style="color: #ff6219"></i>
+        <span class="h2 fw-bold me-2 mt-4 title">Car Rental</span>
+      </div>
+      <div>
+        <button
+          class="btn btn-dark mb-2"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasWithBothOptions"
+          aria-controls="offcanvasWithBothOptions"
+        >
+          <i class="fa-solid fa-bars"></i>
+          <span class="ms-1 d-none d-lg-inline">Menu</span>
+          <!-- Menu -->
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div
+    class="offcanvas offcanvas-start"
+    data-bs-scroll="true"
+    tabindex="-1"
+    id="offcanvasWithBothOptions"
+    aria-labelledby="offcanvasWithBothOptionsLabel"
+  >
+    <div class="offcanvas-header">
+      <!-- <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Menu</h5> -->
+      <div class="d-flex align-items-center mb-3 pb-1">
+        <i class="fa-solid fa-car fa-2x me-3 mt-2" style="color: #ff6219"></i>
+        <span class="h2 fw-bold me-2 mt-4 title">Car Rental</span>
+      </div>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
+    </div>
+    <ul class="navbar-nav pe-auto">
+      <li class="nav-item btn btn-outline-secondary">
+        <a
+          class="nav-link active"
+          aria-current="page"
+          [routerLink]="'/admin/profile'"
+          routerLinkActive="router-link-active"
+          data-bs-dismiss="offcanvas"
+          >Profile</a
+        >
+      </li>
+      <li class="nav-item btn btn-outline-secondary">
+        <a
+          class="nav-link active"
+          aria-current="page"
+          [routerLink]="'/admin/dashboard'"
+          routerLinkActive="router-link-active"
+          data-bs-dismiss="offcanvas"
+          >Dashboard</a
+        >
+      </li>
+      <li class="nav-item btn btn-outline-secondary">
+        <a
+          class="nav-link active"
+          [routerLink]="'/admin/my-cars'"
+          routerLinkActive="router-link-active"
+          data-bs-dismiss="offcanvas"
+          >My Cars</a
+        >
+      </li>
+      <li class="nav-item btn btn-outline-secondary">
+        <a
+          class="nav-link active"
+          [routerLink]="'/admin/bookings'"
+          routerLinkActive="router-link-active"
+          data-bs-dismiss="offcanvas"
+          >Booking History</a
+        >
+      </li>
+
+      <li class="nav-item btn btn-outline-secondary">
+        <a
+          class="nav-link active"
+          [routerLink]="'/admin/transaction'"
+          routerLinkActive="router-link-active"
+          data-bs-dismiss="offcanvas"
+          >payment History</a
+        >
+      </li>
+      <li class="nav-item btn btn-outline-secondary">
+        <a
+          class="nav-link active"
+          [routerLink]="'/login'"
+          routerLinkActive="router-link-active"
+          data-bs-dismiss="offcanvas"
+          >Book car</a
+        >
+      </li>
+      <li class="nav-item btn btn-outline-secondary">
+        <a
+          class="nav-link active"
+          (click)="onLogout()"
+          routerLinkActive="router-link-active"
+          data-bs-dismiss="offcanvas"
+          >Logout <i class="fa-solid fa-right-from-bracket"></i
+        ></a>
+      </li>
+    </ul>
+  </div>
+  <div class="container-fluid">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<footer class="bg-body-tertiary text-center text-lg-start">
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05)">
+    © 2025 Copyright:
+    <a class="text-body" href="http://localhost:4200/admin/dashboard"
+      >CarRental.com</a
+    >
+  </div>
+</footer>

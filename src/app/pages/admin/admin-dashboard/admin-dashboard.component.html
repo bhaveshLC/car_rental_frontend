@@ -1,0 +1,63 @@
+<div class="container">
+  <h4>Admin Dashboard</h4>
+  @if(isLoading){
+  <app-loader />
+  }@else{
+  <div class="row d-flex gap-2" style="width: 100%; flex-wrap: nowrap">
+    <div class="col-3 cart" style="border-left: 5px solid #4d4e8e">
+      <div class="info">
+        <h6 style="color: #4d4e8e">Earning</h6>
+        <h4 class="text-muted fw-bold">
+          {{ bookingDetails?.totalEarning | currency }}
+        </h4>
+      </div>
+      <span style="font-size: 30px; color: #4d4e8e">&#8377;</span>
+    </div>
+    <div class="col-3 cart" style="border-left: 5px solid #ff5f51">
+      <div>
+        <h6 style="color: #ff5f51">Bookings</h6>
+        <h4 class="text-muted fw-bold">
+          {{ bookingDetails?.results.length }}
+        </h4>
+      </div>
+      <span style="font-size: 30px; color: #ff5f51">
+        <i class="fa-solid fa-ticket"></i>
+      </span>
+    </div>
+    <div class="col-3 cart" style="border-left: 5px solid #23c58b">
+      <div class="info">
+        <h6 style="color: #23c58b">Travelers</h6>
+        <h4 class="text-muted fw-bold">{{ bookingDetails?.totalSeats }}</h4>
+      </div>
+      <span style="font-size: 30px; color: #23c58b">
+        <i class="fa-solid fa-car"></i>
+      </span>
+    </div>
+    <div class="col-3 cart" style="border-left: 5px solid #f7c23e">
+      <div class="info">
+        <h6 class="text-warning">Pending Rides</h6>
+        <h4 class="text-muted fw-bold">{{ bookingDetails?.pendingRides }}</h4>
+      </div>
+      <span style="font-size: 30px; color: #f7c23e">
+        <i class="fa-solid fa-clock"></i>
+      </span>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-3 cart" style="border-left: 5px solid red">
+      <div class="info">
+        <h6 class="text-danger">Cancellation Rate</h6>
+        <h4 class="text-muted fw-bold">
+          {{ bookingDetails?.cancellationRate || 0 }}%
+        </h4>
+      </div>
+      <span style="font-size: 30px; color: red">
+        <i class="fa-solid fa-ban"></i>
+      </span>
+    </div>
+  </div>
+  }
+  <div>
+    <canvas id="MyChart"></canvas>
+  </div>
+</div>

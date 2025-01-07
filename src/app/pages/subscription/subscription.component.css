@@ -1,0 +1,11 @@
+.card-title {
+    background: linear-gradient(#101010, #4e215a);
+}
+
+.card-premium-title {
+    background: linear-gradient(#101010, #395c00);
+}
+
+.card-pro-title {
+    background: linear-gradient(#101010, #000000);
+}
