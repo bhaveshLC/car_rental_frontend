@@ -54,10 +54,12 @@
       </span>
     </div>
   </div>
-  <h2 class="text-muted text-center mt-2">Car and Earnings</h2>
-
-  }
+  <h2 class="text-muted text-center mt-2" *ngIf="bookingDetails.results > 0">
+    Car and Earnings
+  </h2>
+  } @if (bookingDetails.results>0) {
   <div style="overflow-x: auto; width: 100%; margin-top: 10px">
     <canvas id="MyChart" style="width: 100%; height: auto"></canvas>
   </div>
+  }
 </div>
