@@ -65,13 +65,9 @@ export class CancelComponent {
             );
         } else {
           this.bookingService
-            .cancelBooking(this.bookingId, this.reason)
+            .cancelBooking(this.bookingId, `${this.reason} (From Admin)`)
             .subscribe(
               (res) => {
-                // this.alertService.getToast(
-                //   'success',
-                //   'Booking cancelled Successfully'
-                // );
                 this.getBooking.emit();
               },
               (error) => {
