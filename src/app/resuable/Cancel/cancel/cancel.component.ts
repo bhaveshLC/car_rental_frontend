@@ -23,22 +23,10 @@ export class CancelComponent {
   httpUrl: string = '';
   ngOnInit(): void {
     this.bookingId = this.route.snapshot.params['id'];
-    if (this.router.url) {
+    if (this.router.url.includes('admin')) {
       this.httpUrl = 'admin';
     }
   }
-  // onCancel() {
-  //   console.log(this.bookingId, this.reason);
-  //   this.bookingService.cancelBooking(this.bookingId, this.reason).subscribe(
-  //     (res) => {
-  //       this.alertService.getToast('success', 'Booking Cancelled Successfully');
-  //       this.getBooking.emit();
-  //     },
-  //     (error) => {
-  //       this.alertService.getToast('error', error.error.message);
-  //     }
-  //   );
-  // }
   onCancel() {
     Swal.fire({
       title: 'Are you sure?',
