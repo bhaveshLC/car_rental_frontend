@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 
-const API_URL = 'https://car-rental-backend-lnxb.onrender.com/booking';
+const API_URL = 'http://localhost:8080/booking';
 @Injectable({
   providedIn: 'root',
 })
