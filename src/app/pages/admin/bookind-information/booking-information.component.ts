@@ -35,7 +35,7 @@ export class BookingInformationComponent {
       });
   }
   onConfirm() {
-    this.bookingService.confirmBooking(this.bookingId).subscribe(
+    this.bookingService.adminConfirmBooking(this.bookingId).subscribe(
       (res) => {
         this.alertService.getToast('success', 'order confirmed');
         this.getBooking();

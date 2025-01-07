@@ -1,6 +1,6 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookingService } from '../../../../service/Booking/booking.service';
 import { AlertService } from '../../../../service/alert/alert.service';
 import Swal from 'sweetalert2';
@@ -14,12 +14,15 @@ import Swal from 'sweetalert2';
 export class CancelComponent {
   reason: string = '';
   route = inject(ActivatedRoute);
+  router = inject(Router);
+
   bookingService = inject(BookingService);
   alertService = inject(AlertService);
   bookingId: string = '';
   @Output() getBooking: EventEmitter<void> = new EventEmitter<void>();
   ngOnInit(): void {
     this.bookingId = this.route.snapshot.params['id'];
+    console.log(this.router.url);
   }
   // onCancel() {
   //   console.log(this.bookingId, this.reason);

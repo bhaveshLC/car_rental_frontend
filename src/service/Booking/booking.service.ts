@@ -26,11 +26,17 @@ export class BookingService {
   cancelBooking(id: string, reason: string) {
     return this.http.patch(`${API_URL}/cancel/${id}`, { reason });
   }
+  adminCancelBooking(id: string, reason: string) {
+    return this.http.patch(`${API_URL}/admin/cancel/${id}`, { reason });
+  }
   getAllAdminBooking() {
     return this.http.get(`${API_URL}/admin`);
   }
   confirmBooking(id: string) {
     return this.http.patch(`${API_URL}/confirm/${id}`, {});
+  }
+  adminConfirmBooking(id: string) {
+    return this.http.patch(`${API_URL}/admin/confirm/${id}`, {});
   }
   applyCoupon(totalPrice: Number, couponCode: string) {
     return this.http.post(`${API_URL}/coupon`, { totalPrice, couponCode });
